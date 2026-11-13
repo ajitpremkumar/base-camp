@@ -4,7 +4,7 @@ A shared mandate tracker. Everyone who knows the password sees the same data and
 
 ## What's in the folder
 
-- `public/index.html` — the tracker page
+- `index.html` — the tracker page (must sit at the top level of the repo)
 - `netlify/functions/state.mjs` — the small shared-storage function (uses Netlify Blobs, nothing else to set up)
 - `netlify.toml`, `package.json` — Netlify settings
 
@@ -37,3 +37,8 @@ Netlify needs the function built, so a plain drag-and-drop of `index.html` alone
 - If two people edit the same field at the same moment, the last save wins. Different fields and different cards never clash.
 - Anyone with the password can edit everything. To change the password, update `BASECAMP_PASSWORD` in Netlify and redeploy; everyone will be asked again.
 - There is no "reset all" button, since it would wipe everyone's edits. "Reset row" on a card still works.
+
+## If the deploy fails
+
+- "Deploy directory does not exist": `index.html` must be at the top level of the repo, next to `netlify.toml`.
+- Function not found: the repo must contain the folder path `netlify/functions/state.mjs`. On GitHub's web uploader, drag the whole `netlify` folder in (not just the files inside it), or use the CLI option above, which keeps the structure.
